@@ -28,7 +28,7 @@ A beginner-friendly **MERN stack** (MongoDB, Express, React, Node.js) project fo
 
 ---
 
-## 🧰 Tech Stack
+## Tech Stack
 
 - **Frontend**: ReactJS, Axios, React Router
 - **Backend**: Node.js, Express
