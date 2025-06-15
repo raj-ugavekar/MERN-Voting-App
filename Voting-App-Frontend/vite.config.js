@@ -5,8 +5,8 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   server: {
     proxy: {
-      "/user": "http://localhost:3000",
-      "/candidate": "http://localhost:3000",
+      "/user": "https://mern-voting-app-xtn5.onrender.com/",
+      "/candidate": "https://mern-voting-app-xtn5.onrender.com/",
     },
   },
   plugins: [react()],
