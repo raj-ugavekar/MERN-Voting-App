@@ -7,7 +7,6 @@ const { jwtAuthMiddleaware } = require("./jwt");
 require("dotenv").config();
 
 const cors = require("cors");
-const db = require("./db");
 
 const corsOptions = {
   origin: process.env.FRONTEND_URL,
