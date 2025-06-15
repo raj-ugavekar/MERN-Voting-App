@@ -6,6 +6,17 @@ const { jwtAuthMiddleaware } = require("./jwt");
 
 require("dotenv").config();
 
+const cors = require("cors");
+const db = require("./db");
+
+const corsOptions = {
+  origin: process.env.FRONTEND_URL,
+  methods: "GET, POST, DELETE, PATCH, PUT, HEAD",
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+
 const bodyparser = require("body-parser");
 const passport = require("./auth");
 app.use(bodyparser.json());
