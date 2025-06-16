@@ -1,5 +1,7 @@
 import axios from "axios";
 
+const baseUrl = import.meta.env.BACKEND_URL;
+
 export class AuthService {
 
   setToken(token) {
@@ -33,7 +35,7 @@ export class AuthService {
         aadharCardNumber: aadharCardNumber,
         password: password,
       };
-      const userData = await axios.post("/user/signup/", payload);
+      const userData = await axios.post(`${baseUrl}/user/signup/`, payload);
       this.setToken(userData.data.response.token);
       return userData.data.response.user;
     } catch (error) {
@@ -48,7 +50,7 @@ export class AuthService {
         aadharCardNumber: aadharCardNumber,
         password: password,
       };
-      const userData = await axios.post("/user/login/", payload);
+      const userData = await axios.post(`${baseUrl}/user/login/`, payload);
       this.setToken(userData.data.response.token);
       alert(userData.data.message);
       return userData.data.response.user;
@@ -61,7 +63,7 @@ export class AuthService {
   async getCurrentUser() {
     try {
       const token = this.getToken();
-      const userData = await axios.get("/user/profile", {
+      const userData = await axios.get(`${baseUrl}/user/profile`, {
         headers: {
           Authorization: `bearer ${token}`,
         },
@@ -80,7 +82,7 @@ export class AuthService {
       newPassword: newPassword,
     };
     try {
-      const userData = await axios.post("/user/profile/password", payload, {
+      const userData = await axios.post(`${baseUrl}/user/profile/password`, payload, {
         headers: {
           Authorization: `bearer ${token}`,
         },

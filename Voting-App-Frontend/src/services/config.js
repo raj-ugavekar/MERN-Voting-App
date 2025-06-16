@@ -1,5 +1,7 @@
 import axios from "axios";
 
+const baseUrl = import.meta.env.BACKEND_URL;
+
 export class Service {
 
   getToken() {
@@ -8,7 +10,7 @@ export class Service {
 
   async getCandidates() {
     try {
-      const candidateData = await axios.get("/candidate/");
+      const candidateData = await axios.get(`${baseUrl}/candidate/`);
       return candidateData.data.response;
     } catch (error) {
       alert(error.response?.data?.message || "Something went wrong!");
@@ -19,7 +21,7 @@ export class Service {
   async getUsers() {
     const token = this.getToken();
     try {
-      const usersData = await axios.get("/user/", {
+      const usersData = await axios.get(`${baseUrl}/user/`, {
         headers: {
           Authorization: `bearer ${token}`,
         },
@@ -39,7 +41,7 @@ export class Service {
       age: age,
     };
     try {
-      const candidateData = await axios.post("/candidate/", payload, {
+      const candidateData = await axios.post(`${baseUrl}/candidate/`, payload, {
         headers: {
           Authorization: `bearer ${token}`,
         },
@@ -69,7 +71,7 @@ export class Service {
       password: password,
     };
     try {
-      const userData = await axios.post("/user/", payload, {
+      const userData = await axios.post(`${baseUrl}/user/`, payload, {
         headers: {
           Authorization: `bearer ${token}`,
         },
@@ -90,7 +92,7 @@ export class Service {
     };
     try {
       const candidateData = await axios.put(
-        "/candidate/" + candidateId,
+        `${baseUrl}/candidate/` + candidateId,
         payload,
         {
           headers: {
@@ -117,7 +119,7 @@ export class Service {
     };
     try {
       const userData = await axios.put(
-        "/user/" + userId,
+        `${baseUrl}/user/` + userId,
         payload,
         {
           headers: {
@@ -136,7 +138,7 @@ export class Service {
   async deleteUser(userId) {
     const token = this.getToken();
     try {
-      const userData = await axios.delete("/user/" + userId, {
+      const userData = await axios.delete(`${baseUrl}/user/` + userId, {
         headers: {
           Authorization: `bearer ${token}`,
         },
@@ -151,7 +153,7 @@ export class Service {
   async deleteCandidate(candidateId) {
     const token = this.getToken();
     try {
-      const candidateData = await axios.delete("/candidate/" + candidateId, {
+      const candidateData = await axios.delete(`${baseUrl}/candidate/` + candidateId, {
         headers: {
           Authorization: `bearer ${token}`,
         },
@@ -165,7 +167,7 @@ export class Service {
 
   async getVoteCount() {
     try {
-      const candidateData = await axios.get("/candidate/vote/count");
+      const candidateData = await axios.get(`${baseUrl}/candidate/vote/count`);
       return candidateData.data.response;
     } catch (error) {
       alert(error.response?.data?.message || "Something went wrong!");
@@ -178,7 +180,7 @@ export class Service {
     const token = this.getToken();
       const payload = "";
       const candidateData = await axios.post(
-        "/candidate/vote/" + candidateId,
+        `${baseUrl}/candidate/vote/` + candidateId,
         payload,
         {
           headers: {

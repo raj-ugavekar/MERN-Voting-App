@@ -34,6 +34,12 @@ function App() {
       });
   }, [dispatch]);
 
+  useEffect(() => {
+  if (!loading && !authStatus) {
+    navigate("/login");
+  }
+  }, [authStatus, loading, navigate]);
+
   return loading ? (
     <LoadingSpinner />
   ) : (
