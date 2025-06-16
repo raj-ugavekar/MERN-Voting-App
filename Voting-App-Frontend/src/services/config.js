@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = import.meta.env.BACKEND_URL;
+const baseUrl = "https://mern-voting-app-xtn5.onrender.com";
 
 export class Service {
 
