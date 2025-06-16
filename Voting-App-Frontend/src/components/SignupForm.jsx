@@ -62,7 +62,7 @@ function SignupForm() {
         if(data.role === 'admin'){
           navigate("/admin");
         }else{
-          navigate("/");
+          navigate("/home");
         }
       }else{
         dispatch(logout());
@@ -79,7 +79,7 @@ function SignupForm() {
       if(userData.role === 'admin'){
         navigate('/admin');
       }else{
-        navigate('/');
+        navigate('/home');
       }
     }
   },[authStatus, userData, navigate])

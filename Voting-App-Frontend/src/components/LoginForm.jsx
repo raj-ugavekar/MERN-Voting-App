@@ -37,7 +37,7 @@ function LoginForm() {
         if(data.role === 'admin'){
           navigate("/admin");
         }else{
-          navigate("/");
+          navigate("/home");
         }
       }else{
         dispatch(logout());
@@ -54,7 +54,7 @@ function LoginForm() {
       if(userData?.role === 'admin'){
         navigate('/admin');
       }else{
-        navigate('/');
+        navigate('/home');
       }
     }
   },[authStatus, userData, navigate])

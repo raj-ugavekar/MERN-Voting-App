@@ -22,7 +22,7 @@ function App() {
           if(userData.role === 'admin'){
             navigate("/admin");
           }else{
-            navigate("/");
+            navigate("/home");
           }
         } else {
           dispatch(logout());
