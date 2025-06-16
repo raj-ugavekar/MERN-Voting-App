@@ -22,7 +22,7 @@ function Header() {
   const navigate = useNavigate();
 
   const navItems = [
-    { name: "Home", route: "/", active: authStatus },
+    { name: "Home", route: "/home", active: authStatus },
     { name: "Vote Count", route: "/votecount", active: true },
     { name: "Voting", route: "/voting", active: authStatus },
     { name: "Login", route: "/login", active: !authStatus },
