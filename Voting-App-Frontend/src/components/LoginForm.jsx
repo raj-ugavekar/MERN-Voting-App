@@ -42,6 +42,7 @@ function LoginForm() {
       }else{
         dispatch(logout());
         setLoginData({aadharCardNumber : "", password : ""})
+        navigate("/login");
       }
     } catch (error) {
       alert("Internal Server Error. Refresh Again");

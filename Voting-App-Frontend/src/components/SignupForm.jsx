@@ -67,6 +67,7 @@ function SignupForm() {
       }else{
         dispatch(logout());
         setSignupData({name : "",age: "",email : "",mobile : "",address : "",aadharCardNumber : "",password : ""});
+        navigate("/login");
       }
     } catch (error) {
       alert("Internal Server Error. Refresh Again");
