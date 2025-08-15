@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import ChangePasswordForm from "../Header/ChangePasswordForm";
 import { FaUser } from "react-icons/fa";
@@ -14,6 +14,22 @@ function Header({ toggleSidebar }) {
 	const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false);
 	
 	const userData = useSelector((state) => state.auth.userData);
+
+	  const menuRef = useRef(null);
+	  const profileRef = useRef(null);
+	
+	  useEffect(() => {
+		function handleClickOutside(e) {
+		  if (menuRef.current && !menuRef.current.contains(e.target)) {
+			toggleSidebar();
+		  }
+		  if (profileRef.current && !profileRef.current.contains(e.target)) {
+			setIsProfileOpen(false);
+		  }
+		}
+		document.addEventListener("mousedown", handleClickOutside);
+		  return () => document.removeEventListener("mousedown", handleClickOutside);
+	  }, []);
 
 	const loadEditUser = (user) => {
 		setIsProfileOpen(false);
@@ -43,7 +59,7 @@ function Header({ toggleSidebar }) {
 	
 	return (
 		<>
-			<header className="bg-gray-100 shadow-md w-full">
+			<header className="bg-gray-100 shadow-md w-full" ref={menuRef}>
 				<div className="lg:container mx-auto px-6 py-4 flex left-auto justify-between items-center">
 					<button onClick={toggleSidebar} className="lg:hidden text-gray-700 text-2xl focus:outline-none">
 						☰
@@ -60,7 +76,7 @@ function Header({ toggleSidebar }) {
 				</div>
 				</div>
 			</header>
-			<div className="absolute z-50 top-6 right-12">
+			<div className="absolute z-50 top-6 right-12" ref={profileRef}>
 				<ProfilePopUpModal 
 					isOpen={isProfileOpen} 
 					userData={userData} 

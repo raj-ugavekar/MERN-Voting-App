@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { FaUser, FaBars, FaTimes } from "react-icons/fa";
@@ -20,6 +20,22 @@ function Header() {
   const userData = useSelector((state) => state.auth.userData);
 
   const navigate = useNavigate();
+
+	  const menuRef = useRef(null);
+	  const profileRef = useRef(null);
+	
+	  useEffect(() => {
+		function handleClickOutside(e) {
+		  if (menuRef.current && !menuRef.current.contains(e.target)) {
+			toggleSidebar();
+		  }
+		  if (profileRef.current && !profileRef.current.contains(e.target)) {
+			setIsProfileOpen(false);
+		  }
+		}
+		document.addEventListener("mousedown", handleClickOutside);
+		  return () => document.removeEventListener("mousedown", handleClickOutside);
+	  }, []);
 
   const navItems = [
     { name: "Home", route: "/home", active: authStatus },
@@ -56,7 +72,7 @@ function Header() {
 
   return (
     <>
-      <header className="bg-gray-100 shadow-md">
+      <header className="bg-gray-100 shadow-md" ref={menuRef}>
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center space-x-2">
             <svg
@@ -90,7 +106,7 @@ function Header() {
           
           <div className="flex items-center space-x-4">
             {authStatus && (
-              <div className="relative">
+              <div className="relative" ref={profileRef}>
                 <div
                   onClick={() => setIsProfileOpen(!isProfileOpen)}
                   className="text-blue-600 hover:text-blue-900 text-xl rounded-full cursor-pointer"
