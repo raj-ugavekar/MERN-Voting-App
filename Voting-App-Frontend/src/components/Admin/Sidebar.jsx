@@ -16,6 +16,8 @@ export default function Sidebar({toggleSidebar}) {
 
 	  useEffect(() => {
 		function handleClickOutside(e) {
+			console.log(e.target);
+			console.log(menuRef.current);
 		  if (menuRef.current && !menuRef.current.contains(e.target)) {
 			toggleSidebar();
 		  }
@@ -41,7 +43,7 @@ export default function Sidebar({toggleSidebar}) {
 			</div>
 			<div className="flex-1 space-y-2">
 				{DASHBOARD_SIDEBAR_LINKS.map((link) => (
-					<Link key={link.key} to={link.path} 
+					<Link key={link.key} to={link.path} onClick={toggleSidebar}
 						className={`flex items-center gap-2 px-4 py-3 hover:bg-gray-300 rounded-md transition-all ${pathname === link.path ? "bg-blue-500 text-white" : "text-gray-700"}`}>
 						{link.label}
 					</Link>
