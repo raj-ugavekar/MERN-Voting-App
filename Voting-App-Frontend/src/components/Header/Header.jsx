@@ -72,7 +72,7 @@ function Header() {
 
   return (
     <>
-      <header className="bg-gray-100 shadow-md" ref={menuRef}>
+      <header className="bg-gray-100 shadow-md">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center space-x-2">
             <svg
@@ -137,7 +137,7 @@ function Header() {
         <div
           className={`fixed inset-y-0 left-0 transform ${
             isMenuOpen ? "translate-x-0" : "-translate-x-full"
-          } lg:relative lg:translate-x-0 transition-transform duration-300 ease-in-out md:hidden w-64 flex flex-col justify-between bg-gray-100 shadow-md z-50`}
+          } lg:relative lg:translate-x-0 transition-transform duration-300 ease-in-out md:hidden w-64 flex flex-col justify-between bg-gray-100 shadow-md z-50`} ref={menuRef}
         >
           <div className="flex flex-col space-y-4 p-6">
             {navItems.map((item) =>
