@@ -27,7 +27,7 @@ function Header() {
 	  useEffect(() => {
 		function handleClickOutside(e) {
 		  if (menuRef.current && !menuRef.current.contains(e.target)) {
-			toggleSidebar();
+			setIsMenuOpen();
 		  }
 		  if (profileRef.current && !profileRef.current.contains(e.target)) {
 			setIsProfileOpen(false);
