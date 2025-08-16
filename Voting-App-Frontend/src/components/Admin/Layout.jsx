@@ -22,12 +22,12 @@ export default function Layout() {
       })
   }, [dispatch]);
 
-  	const menuRef = useRef(null);
+	const menuRef = useRef(null);
 
 	  useEffect(() => {
 		function handleClickOutside(e) {
 		  if (menuRef.current && !menuRef.current.contains(e.target)) {
-			setSidebarOpen(!sidebarOpen);
+			setSidebarOpen(false);
 		  }
 		}
 		document.addEventListener("mousedown", handleClickOutside);
