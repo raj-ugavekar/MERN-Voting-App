@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { MdClear } from "react-icons/md";
 import LogoutBtn from '../Header/LogoutBtn';
@@ -12,8 +12,20 @@ const DASHBOARD_SIDEBAR_LINKS = [
 export default function Sidebar({toggleSidebar}) {
 	const { pathname } = useLocation();
 
+	const menuRef = useRef(null);
+
+	  useEffect(() => {
+		function handleClickOutside(e) {
+		  if (menuRef.current && !menuRef.current.contains(e.target)) {
+			toggleSidebar();
+		  }
+		}
+		document.addEventListener("mousedown", handleClickOutside);
+		  return () => document.removeEventListener("mousedown", handleClickOutside);
+	  }, []);
+
 	return (
-		<div className="h-full w-full p-4 flex flex-col bg-gray-100 shadow-lg">
+		<div className="h-full w-full p-4 flex flex-col bg-gray-100 shadow-lg" ref={menuRef}>
 			<div className="flex items-center relative gap-2 mb-6">
 				<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
 					strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
