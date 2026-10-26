@@ -28,34 +28,39 @@ function SignupForm() {
 
   const signupButtonHandler = async () => {
     try {
-      if(signupData.name == ''){
+      if(signupData.name.trim() === ''){
           alert("Please enter your Name.");
           return;
       }
-      if(signupData.email == ''){
+      if(signupData.email.trim() === ''){
           alert("Please enter your Email.");
           return;
       }
-      if(signupData.mobile == ''){
+      if(signupData.mobile.trim() === ''){
           alert("Please enter your Mobile Number.");
           return;
       }
-      if(signupData.address == ''){
+      if(signupData.address.trim() === ''){
           alert("Please enter your Address.");
           return;
       }
-      if(signupData.aadharCardNumber == ''){
+      if(signupData.aadharCardNumber.trim() === ''){
           alert("Please enter your AddharCard Number.");
           return;
       }
-      if(signupData.password == ''){
+      if(signupData.password.trim() === ''){
           alert("Please enter your Password.");
           return;
       }
-      if(signupData.age == ''){
-          alert("Please enter your Password.");
+      if(signupData.age.trim() === '' || signupData.age === 0){
+          alert("Please enter your Age.");
           return;
       }
+      if(signupData.age < 18){
+          alert("Minimum Age should be 18.");
+          return;
+      }
+
       const data = await authService.userSignup(signupData);
       if(data){
         dispatch(login(data));
@@ -134,7 +139,7 @@ function SignupForm() {
               onChange={handleChange}
             />
             <InputBox
-              type="text"
+              type="number"
               placeholder="Age"
               name = "age"
               value={signupData.age}

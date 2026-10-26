@@ -20,7 +20,7 @@ const bodyparser = require("body-parser");
 const passport = require("./auth");
 app.use(bodyparser.json());
 
-const PORT = 3000 || process.env.PORT;
+const PORT = process.env.PORT || 3000;
 app.use(passport.initialize());
 
 const localAuthMiddleware = passport.authenticate("local", { session: false });

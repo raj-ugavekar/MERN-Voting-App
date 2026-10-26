@@ -31,25 +31,27 @@ function AddCandidateForm({ isOpen, onClose, newCandidate, isEditing, selectedCa
   };
 
   const validateData =()=>{
-    if(formData.name == ''){
+    if(formData.name.trim() === ''){
           alert("Please enter your Candidate Name.");
-          return;
+          return false;
     }
-    if(formData.party == ''){
+    if(formData.party.trim() === ''){
           alert("Please enter your Candidate Party.");
-          return;
+          return false;
     }
-    if(formData.age == ''){
+    if(formData.age.trim() === ''){
           alert("Please enter Candidate Age.");
-          return;
+          return false;
     }
+
+    return true;
   }
 
   const handleAddCandidate = () => {
-    validateData();
-    setLoading(true);
+    if (!validateData()) return;
     if (formData.name && formData.party && formData.age) {
-    if(confirm("Are you sure? want to add Candidate.")){
+      if(confirm("Are you sure? want to add Candidate.")){
+        setLoading(true);
         service.addCandidate(formData).then((candiateData)=>{
           if(candiateData){
             setFormData({ name: "", party: "", age: "" });
@@ -66,10 +68,10 @@ function AddCandidateForm({ isOpen, onClose, newCandidate, isEditing, selectedCa
   };
 
   const handleEditCandidate = () => {
-  validateData();
-  setLoading(true);
-    if (formData.name && formData.party && formData.age) {
-      if(confirm("Are you sure? want to update candidate details.")){
+  if (!validateData()) return;
+  if (formData.name && formData.party && formData.age) {
+    if(confirm("Are you sure? want to update candidate details.")){
+        setLoading(true);
         service.updateCandidate(selectedCandidateId , formData).then((candiateData)=>{
           if(candiateData){
             setFormData({ name: "", party: "", age: "" });

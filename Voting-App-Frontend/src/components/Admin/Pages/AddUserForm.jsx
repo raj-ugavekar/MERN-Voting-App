@@ -52,37 +52,48 @@ function AddUserForm({ isOpen, onClose, user, isEditing, selectedUserId  }) {
   };
 
   const validateData =()=>{
-      if(formData.name == ''){
+      if(formData.name.trim() === ''){
           alert("Please enter your Name.");
-          return;
+          return false;
       }
-      if(formData.email == ''){
+      if(formData.email.trim() === ''){
           alert("Please enter your Email.");
-          return;
+          return false;
       }
-      if(formData.mobile == ''){
+      if(formData.mobile.trim() === ''){
           alert("Please enter your Mobile Number.");
-          return;
+          return false;
       }
-      if(formData.address == ''){
+      if(formData.address.trim() === ''){
           alert("Please enter your Address.");
-          return;
+          return false;
       }
-      if(formData.aadharCardNumber == ''){
+      if(formData.aadharCardNumber.trim() === ''){
           alert("Please enter your AddharCard Number.");
-          return;
+          return false;
       }
-      if(formData.age == ''){
-          alert("Please enter your Password.");
-          return;
+      if(formData.age.trim() === '' || formData.age.trim() === 0){
+          alert("Please enter your Age.");
+          return false;
       }
+      if(formData.age < 18){
+          alert("Minimum Age should be 18.");
+          return false;
+      }
+
+      if (!isEditing && formData.password.trim() === "") {
+        alert("Please enter your Password.");
+        return false;
+      }
+
+      return true;
   }
 
   const handleAddUser = () => {
-    validateData();
-    setLoading(true);
+    if (!validateData()) return;
     if (formData.name && formData.aadharCardNumber && formData.age && formData.address && formData.email && formData.password && formData.mobile) {
       if(confirm("Are you sure? want to add User.")){
+        setLoading(true);
         service.addUser(formData).then((userData)=>{
           if(userData){
             setFormData({name:"",
@@ -105,10 +116,10 @@ function AddUserForm({ isOpen, onClose, user, isEditing, selectedUserId  }) {
   };
 
   const handleEditUser = () => {
-    validateData();
-    setLoading(true);
+    if (!validateData()) return;
     if (formData.name && formData.aadharCardNumber && formData.age && formData.address && formData.email && formData.mobile) {
       if(confirm("Are you sure? want to update user details.")){
+        setLoading(true);
         const updateUser = {name:formData.name,
           aadharCardNumber : formData.aadharCardNumber,
           age: formData.age,

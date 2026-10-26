@@ -13,11 +13,11 @@ function ChangePasswordForm({ isOpen, onClose }) {
   };
 
   const changePasswordHandler = () =>{
-    if(changePassword.oldPassword == ''){
+    if(changePassword.oldPassword.trim() === ''){
           alert("Please enter your Old Password.");
           return;
     }
-    if(changePassword.newPassword == ''){
+    if(changePassword.newPassword.trim() === ''){
           alert("Please enter your New Password.");
           return;
     }
@@ -28,8 +28,13 @@ function ChangePasswordForm({ isOpen, onClose }) {
         alert(data);
         onClose();
       }
-      setLoading(false);
     })
+    .catch((error) => {
+      alert("Something went wrong while updating the password.");
+    })
+    .finally(() => {
+        setLoading(false);
+      });
   }
 
   return (

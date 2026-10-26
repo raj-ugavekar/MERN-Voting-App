@@ -36,9 +36,9 @@ export class Service {
   async addCandidate({ name, party, age }) {
     const token = this.getToken();
     const payload = {
-      name: name,
-      party: party,
-      age: age,
+      name: name.trim(),
+      party: party.trim(),
+      age: age.trim(),
     };
     try {
       const candidateData = await axios.post(`${baseUrl}/candidate/`, payload, {
@@ -62,13 +62,13 @@ export class Service {
     password,}) {
     const token = this.getToken();
     const payload = {
-      name: name,
-      age: age,
-      mobile: mobile,
-      email: email,
-      address: address,
-      aadharCardNumber: aadharCardNumber,
-      password: password,
+      name: name.trim(),
+      age: age.trim(),
+      mobile: mobile.trim(),
+      email: email.trim(),
+      address: address.trim(),
+      aadharCardNumber: aadharCardNumber.trim(),
+      password: password.trim(),
     };
     try {
       const userData = await axios.post(`${baseUrl}/user/`, payload, {
@@ -86,9 +86,9 @@ export class Service {
   async updateCandidate(candidateId , {age, name, party }) {
     const token = this.getToken();
     const payload = {
-      name: name,
-      party: party,
-      age: age,
+      name: name.trim(),
+      party: party.trim(),
+      age: age.trim(),
     };
     try {
       const candidateData = await axios.put(
@@ -110,12 +110,12 @@ export class Service {
     async updateUser(userId , {name, age, mobile,email, address, aadharCardNumber }) {
     const token = this.getToken();
     const payload = {
-      name: name,
-      age: age,
-      mobile: mobile,
-      email: email,
-      address: address,
-      aadharCardNumber: aadharCardNumber
+      name: name.trim(),
+      age: age.trim(),
+      mobile: mobile.trim(),
+      email: email.trim(),
+      address: address.trim(),
+      aadharCardNumber: aadharCardNumber.trim()
     };
     try {
       const userData = await axios.put(
@@ -130,7 +130,7 @@ export class Service {
       return userData.data.response;
     } catch (error) {
       alert(error.response?.data?.message || "Something went wrong!");
-      console.log("Service :: updateCandidate :: error", error);
+      console.log("Service :: updateUser :: error", error);
     }
   }
 
@@ -146,7 +146,7 @@ export class Service {
       return userData.data.message;
     } catch (error) {
       alert(error.response?.data?.message || "Something went wrong!");
-      console.log("Service :: deleteCandidate :: error", error);
+      console.log("Service :: deleteUser :: error", error);
     }
   }
 
