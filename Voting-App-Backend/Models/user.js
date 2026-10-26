@@ -60,7 +60,7 @@ userSchema.pre("save", async function (next) {
 userSchema.methods.checkAdminRole = async function () {
   try {
     const response = await User.find({ role: "admin" });
-    if (response) {
+    if (response.length > 0) {
       return false;
     }
     return true;

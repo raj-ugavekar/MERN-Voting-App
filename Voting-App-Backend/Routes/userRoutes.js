@@ -73,18 +73,18 @@ router.post("/", jwtAuthMiddleware, async (req, res) => {
   }
 });
 
-router.get("/profile", jwtAuthMiddleware, async (req, res) => {
-  const userData = req.user;
-  const userid = userData.id;
-  // const userid = req.body;
-  try {
-    const user = await User.findById(userid);
-    res.status(200).json(user);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: "Internal Server Error" });
-  }
-});
+// router.get("/profile", jwtAuthMiddleware, async (req, res) => {
+//   const userData = req.user;
+//   const userid = userData.id;
+//   // const userid = req.body;
+//   try {
+//     const user = await User.findById(userid);
+//     res.status(200).json(user);
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500).json({ message: "Internal Server Error" });
+//   }
+// });
 
 //USER SIGNUP
 router.post("/signup", async (req, res) => {
@@ -100,7 +100,7 @@ router.post("/signup", async (req, res) => {
 
     const user = await newUser.save();
 
-    payload = { id: user.id };
+    const payload = { id: user.id };
     const token = generateToken(payload);
 
     return res.status(200).json({ response: { user, token }, message: "User registered successfully." });
@@ -120,7 +120,7 @@ router.post("/login", async (req, res) => {
         .status(401)
         .json({ message: "Incorrect AadharCard Number or Password" });
     }
-    payload = { id: user.id };
+    const payload = { id: user.id };
     const token = generateToken(payload);
     res.status(200).json({ response: { user, token }, message: "Login successful." });
   } catch (error) {
