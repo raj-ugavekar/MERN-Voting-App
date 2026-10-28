@@ -68,8 +68,7 @@ export class AuthService {
           Authorization: `bearer ${token}`,
         },
       });
-      console.log(userData.data);
-      return userData.data;
+      return userData.data.user;
     } catch (error) {
       // alert(error.response?.data?.message || "Something went wrong. Please try again.");
       console.log("Service :: getCurrentUser :: error", error);
