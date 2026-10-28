@@ -104,7 +104,8 @@ function CandidateDetails() {
             <CandidateDetailsCard key={candidate.id} onEdit={loadEditCandidate} candidate={candidate} onClick={() => openCandidateDetails(candidate)} />
           ))
         ) : (
-          <LoadingSpinner className="min-h-[174px]"/>
+          // <LoadingSpinner className="min-h-[174px]"/>
+          <div className="md:text-xl">No Candidates Found</div>
         )}
       </div>
       <AddCandidateForm

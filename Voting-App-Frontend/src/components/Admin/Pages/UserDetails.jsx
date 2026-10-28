@@ -125,7 +125,8 @@ function UserDetails() {
             <UserDetailsCard key={user.id} user={user} onEdit={loadEditUser} onClick={()=> openUserDetails(user)}/>
           ))
         ) : (
-          <LoadingSpinner className="min-h-[174px]"/>
+          // <LoadingSpinner className="min-h-[174px]"/>
+          <div className="md:text-xl">No Users Found</div>
         )}
       </div>
       <AddUserForm
