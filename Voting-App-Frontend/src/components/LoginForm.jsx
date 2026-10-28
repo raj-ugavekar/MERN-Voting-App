@@ -23,11 +23,11 @@ function LoginForm() {
 
   const loginButtonHandler = async () => {
     try {
-      if (loginData.aadharCardNumber.trim() === '') {
+      if (loginData.aadharCardNumber === '') {
           alert("Please enter your AadharCard Number.");
           return;
       }
-      if (loginData.password.trim() === '') {
+      if (loginData.password === '') {
           alert("Please enter your Password.");
           return;
       }

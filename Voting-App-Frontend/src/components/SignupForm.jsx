@@ -28,31 +28,31 @@ function SignupForm() {
 
   const signupButtonHandler = async () => {
     try {
-      if(signupData.name.trim() === ''){
+      if(signupData.name === ''){
           alert("Please enter your Name.");
           return;
       }
-      if(signupData.email.trim() === ''){
+      if(signupData.email === ''){
           alert("Please enter your Email.");
           return;
       }
-      if(signupData.mobile.trim() === ''){
+      if(signupData.mobile === ''){
           alert("Please enter your Mobile Number.");
           return;
       }
-      if(signupData.address.trim() === ''){
+      if(signupData.address === ''){
           alert("Please enter your Address.");
           return;
       }
-      if(signupData.aadharCardNumber.trim() === ''){
+      if(signupData.aadharCardNumber === ''){
           alert("Please enter your AddharCard Number.");
           return;
       }
-      if(signupData.password.trim() === ''){
+      if(signupData.password === ''){
           alert("Please enter your Password.");
           return;
       }
-      if(signupData.age.trim() === '' || signupData.age === 0){
+      if(signupData.age === '' || signupData.age === 0){
           alert("Please enter your Age.");
           return;
       }

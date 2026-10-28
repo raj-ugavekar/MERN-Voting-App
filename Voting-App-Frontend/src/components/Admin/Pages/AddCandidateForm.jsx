@@ -31,15 +31,15 @@ function AddCandidateForm({ isOpen, onClose, newCandidate, isEditing, selectedCa
   };
 
   const validateData =()=>{
-    if(formData.name.trim() === ''){
+    if(formData.name === ''){
           alert("Please enter your Candidate Name.");
           return false;
     }
-    if(formData.party.trim() === ''){
+    if(formData.party === ''){
           alert("Please enter your Candidate Party.");
           return false;
     }
-    if(formData.age.trim() === ''){
+    if(formData.age === ''){
           alert("Please enter Candidate Age.");
           return false;
     }

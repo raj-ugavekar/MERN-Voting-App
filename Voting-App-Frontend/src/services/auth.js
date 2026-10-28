@@ -27,13 +27,13 @@ export class AuthService {
   }) {
     try {
       const payload = {
-        name: name.trim(),
-        age: age.trim(),
-        mobile: mobile.trim(),
-        email: email.trim(),
-        address: address.trim(),
-        aadharCardNumber: aadharCardNumber.trim(),
-        password: password.trim(),
+        name: name,
+        age: age,
+        mobile: mobile,
+        email: email,
+        address: address,
+        aadharCardNumber: aadharCardNumber,
+        password: password,
       };
       const userData = await axios.post(`${baseUrl}/user/signup/`, payload);
       this.setToken(userData.data.response.token);
@@ -47,8 +47,8 @@ export class AuthService {
   async userLogin({ aadharCardNumber, password }) {
     try {
       const payload = {
-        aadharCardNumber: aadharCardNumber.trim(),
-        password: password.trim(),
+        aadharCardNumber: aadharCardNumber,
+        password: password,
       };
       const userData = await axios.post(`${baseUrl}/user/login/`, payload);
       this.setToken(userData.data.response.token);
@@ -78,8 +78,8 @@ export class AuthService {
   async changeUserPassword({ oldPassword, newPassword }) {
     const token = this.getToken();
     const payload = {
-      currentPassword: oldPassword.trim(),
-      newPassword: newPassword.trim(),
+      currentPassword: oldPassword,
+      newPassword: newPassword,
     };
     try {
       const userData = await axios.post(`${baseUrl}/user/profile/password`, payload, {

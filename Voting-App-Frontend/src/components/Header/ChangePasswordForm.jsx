@@ -13,11 +13,11 @@ function ChangePasswordForm({ isOpen, onClose }) {
   };
 
   const changePasswordHandler = () =>{
-    if(changePassword.oldPassword.trim() === ''){
+    if(changePassword.oldPassword === ''){
           alert("Please enter your Old Password.");
           return;
     }
-    if(changePassword.newPassword.trim() === ''){
+    if(changePassword.newPassword === ''){
           alert("Please enter your New Password.");
           return;
     }

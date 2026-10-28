@@ -52,27 +52,27 @@ function AddUserForm({ isOpen, onClose, user, isEditing, selectedUserId  }) {
   };
 
   const validateData =()=>{
-      if(formData.name.trim() === ''){
+      if(formData.name === ''){
           alert("Please enter your Name.");
           return false;
       }
-      if(formData.email.trim() === ''){
+      if(formData.email === ''){
           alert("Please enter your Email.");
           return false;
       }
-      if(formData.mobile.trim() === ''){
+      if(formData.mobile === ''){
           alert("Please enter your Mobile Number.");
           return false;
       }
-      if(formData.address.trim() === ''){
+      if(formData.address === ''){
           alert("Please enter your Address.");
           return false;
       }
-      if(formData.aadharCardNumber.trim() === ''){
+      if(formData.aadharCardNumber === ''){
           alert("Please enter your AddharCard Number.");
           return false;
       }
-      if(formData.age.trim() === '' || formData.age.trim() === 0){
+      if(formData.age === '' || formData.age === 0){
           alert("Please enter your Age.");
           return false;
       }
@@ -81,7 +81,7 @@ function AddUserForm({ isOpen, onClose, user, isEditing, selectedUserId  }) {
           return false;
       }
 
-      if (!isEditing && formData.password.trim() === "") {
+      if (!isEditing && formData.password === "") {
         alert("Please enter your Password.");
         return false;
       }
